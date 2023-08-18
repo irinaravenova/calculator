@@ -1,6 +1,6 @@
-let firstNumber
-let secondNumber
-let operator
+let a = document.querySelector('.firstNumber')
+let b = document.querySelector('.secondNumber')
+let operator = document.querySelector('.operator')
 
 
 function add(a, b) {
@@ -19,17 +19,17 @@ function divide(a, b) {
     return a / b
 };
 
-function operate(a, b, o) {
-    if (o == "+") {
+function operate(a, b, operator) {
+    if (operator == "+") {
         add(a, b);
     }
-    if (o == "-") {
+    if (operator == "-") {
         subtract(a, b);
     }
-    if (o == "*") {
+    if (operator == "*") {
         multiply(a, b)
     }
-    if (o == "/") {
+    if (operator == "/") {
         divide(a, b);
     }
 
