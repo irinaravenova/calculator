@@ -22,6 +22,10 @@ h1 {
 }
 
 .display-window {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    font-family: Arial, Helvetica, sans-serif;
     width: 450px;
     height: 120px;
     margin-bottom: 15px;
@@ -43,10 +47,16 @@ h1 {
     border-radius: 10px;
     width: 90px;
     height: 50px;
+    font-size: larger;
 }
 
 #clear-button, #delete-button {
     width: 190px;
     height: 50px;
+}
+
+#display-result {
+    font-size: xx-large;
+    padding-right: 25px;
 }
 
