@@ -1,7 +1,24 @@
-let a = document.querySelector('.firstNumber')
-let b = document.querySelector('.secondNumber')
-let operator = document.querySelector('.operator')
+let valA = null;
+let valB = null;
+let operand = null;
 
+let buttons = document.querySelectorAll('.buttons')
+let displayValue = document.querySelector("#display-result")
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        if (event.target.id == "clear" || event.target.id == "delete") {
+            valA = 0;
+            valB = 0;
+            displayValue.innerHTML = 0;
+            console.log(valA, valB, operand)
+        }
+       // else if (event.target.classList.contains("numbers")) 
+
+
+        // displayValue.innerHTML = number.textContent;
+    })
+})
 
 function add(a, b) {
     return a + b
@@ -33,5 +50,5 @@ function operate(a, b, operator) {
         return divide(a, b);
     }
 
-
+    
 };
