@@ -9,14 +9,58 @@ buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
         if (event.target.id == "clear" || event.target.id == "delete") {
             valA = 0;
-            valB = 0;
+            valB = null;
+            operand = null
             displayValue.innerHTML = 0;
             console.log(valA, valB, operand)
         }
-       // else if (event.target.classList.contains("numbers")) 
+        else if (event.target.classList.contains("numbers")) {            
+            if (valA == null) {
+                valA = 0 + parseInt(event.target.innerHTML);
+                displayValue.innerHTML = valA;
+                console.log(valA)
+            }
+            else if (valA != null) {
+                if (operand == null) {
+                    valA = `${parseInt(valA + event.target.innerHTML)}`;
+                    displayValue.innerHTML = valA;
+                    console.log(valA)
+                }
+                else if (operand != null) {
+                    if (valB == null) {
+                        valB = parseInt(event.target.innerHTML);
+                        displayValue.innerHTML = valB;
+                        console.log(valA, operand, valB);
+                    }
+                    else if (valB != null) {
+                        valB = `${parseInt(valB + event.target.innerHTML)}`;
+                        displayValue.innerHTML = valB;
+                        console.log(valA, operand, valB);
+                    }
+                }
+            }
+        }
+        else if (event.target.classList.contains("operator")) {
+            if (operand == null) {
+                operand = event.target.innerHTML;
+                console.log(valA, operand, valB)
+            }
+            if (valA == null && valB == null) {
+                displayValue.innerHTML = 0;
+            }
+            else if (valA != null && valB == null) {
+                operand = event.target.innerHTML;
+                
+            }
 
 
-        // displayValue.innerHTML = number.textContent;
+
+
+
+
+
+
+        }
     })
 })
 
