@@ -7,44 +7,72 @@ let displayValue = document.querySelector("#display-result")
 
 buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
-        if (event.target.id == "clear" || event.target.id == "delete") {
+        if (event.target.id == "clear") {
             valA = 0;
             valB = null;
             operand = null
             displayValue.innerHTML = 0;
             console.log(valA, valB, operand)
         }
+        else if (event.target.id == "delete") {
+            if (valA != null && valB == null) {
+                if (valA.length > 1) {
+                    valA = valA.slice(0, -1);
+                    displayValue.innerHTML = valA;
+                    console.log(valA, typeof valA)
+                }
+                else if (valA.length == 1) {
+                    valA = 0;
+                    displayValue.innerHTML = valA;
+                    console.log(valA, typeof valA)
+                }
+            }
+            else if (operand != null && valB != null) {
+                if (String(valB).length > 1) {
+                    valB = String(valB).slice(0, -1);
+                    displayValue.innerHTML = (valB);
+                    console.log(valA, valB)
+                }
+                else if (String(valB).length == 1) {
+                    valB = 0;
+                    displayValue.innerHTML = String(valB);
+                    console.log(valA, (valB))
+                }            
+            }
+            }
+        
         else if (event.target.classList.contains("numbers")) {            
             if (valA == null) {
-                valA = 0 + parseInt(event.target.innerHTML);
+                valA = 0 + parseFloat(event.target.innerHTML);
                 displayValue.innerHTML = valA;
                 console.log(valA)
             }
             else if (valA != null) {
                 if (operand == null) {
-                    valA = `${parseInt(valA + event.target.innerHTML)}`;
+                    valA = `${parseFloat(valA + event.target.innerHTML)}`;
                     displayValue.innerHTML = valA;
                     console.log(valA)
                 }
                 else if (operand != null) {
                     if (valB == null) {
-                        valB = parseInt(event.target.innerHTML);
+                        valB = parseFloat(event.target.innerHTML);
                         displayValue.innerHTML = valB;
                         console.log(valA, operand, valB);
                     }
                     else if (valB != null) {
-                        valB = parseInt(`${parseInt(valB + event.target.innerHTML)}`);
+                        valB = parseFloat(`${parseFloat(valB + event.target.innerHTML)}`);
                         displayValue.innerHTML = valB;
                         console.log(valA, operand, valB);
                     }
                 }
             }
             else if (valB != null) {
-                valB = `${parseInt(valB + event.target.innerHTML)}`;
+                valB = `${parseFloat(valB + event.target.innerHTML)}`;
                 displayValue.innerHTML = valB;
                 console.log(valA, operand, valB);
             }
         }
+
         else if (event.target.classList.contains("operator")) {
             if (valA != null && valB != null) {
                     if (operand == null) {
@@ -71,6 +99,7 @@ buttons.forEach((button) => {
                 console.log(valA, operand, valB);
             }
         }
+
         else if (event.target.id == "equals") {
             if (valA != null && valB != null && operand != null) {
                 let result = operate(valA, valB, operand);
@@ -87,8 +116,9 @@ buttons.forEach((button) => {
                 }
             }
         }
-    })
-})
+        
+    }
+)});
 
 
 function add(a, b) {
@@ -129,4 +159,5 @@ function operate(a, b, operator) {
         else {
             return divide(a, b);
         }
-}};
+    }
+}

@@ -23,6 +23,9 @@ h1 {
     margin: auto;
     padding: 15px;
     border-radius: 15px;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 10px 10px #283593;
 }
 
 .display-window {
@@ -76,4 +79,11 @@ h1 {
     padding-right: 25px;
 }
 
-
+footer {
+    font-family: 'Shadows Into Light', cursive;
+    color: #E8EAF6;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    font-size: medium;
+}
