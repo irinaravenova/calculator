@@ -33,55 +33,84 @@ buttons.forEach((button) => {
                         console.log(valA, operand, valB);
                     }
                     else if (valB != null) {
-                        valB = `${parseInt(valB + event.target.innerHTML)}`;
+                        valB = parseInt(`${parseInt(valB + event.target.innerHTML)}`);
                         displayValue.innerHTML = valB;
                         console.log(valA, operand, valB);
                     }
                 }
             }
+            else if (valB != null) {
+                valB = `${parseInt(valB + event.target.innerHTML)}`;
+                displayValue.innerHTML = valB;
+                console.log(valA, operand, valB);
+            }
         }
         else if (event.target.classList.contains("operator")) {
-            if (operand == null) {
-                operand = event.target.innerHTML;
-                console.log(valA, operand, valB)
+            if (valA != null && valB != null) {
+                    if (operand == null) {
+                        let result = operate(valA, valB, operand);
+                        displayValue.innerHTML = result;
+                        valA = result;
+                        valB = null;
+                        console.log(valA, valB, operand, result)
+                    }
+                    else if (operand != null) {
+                        let result = operate(valA, valB, operand);
+                        displayValue.innerHTML = result;
+                        valA = result;
+                        valB = null;
+                        operand = event.target.innerHTML;
+                        console.log(valA, valB, operand, result)
+                    }
             }
-            if (valA == null && valB == null) {
-                displayValue.innerHTML = 0;
+            else if (operand == null && valA == null && valB == null) {
+                console.log(valA, operand, valB)
             }
             else if (valA != null && valB == null) {
                 operand = event.target.innerHTML;
-                
+                console.log(valA, operand, valB);
             }
-
-
-
-
-
-
-
-
+        }
+        else if (event.target.id == "equals") {
+            if (valA != null && valB != null && operand != null) {
+                let result = operate(valA, valB, operand);
+                if (!(typeof result === 'string')) {
+                    displayValue.innerHTML = result;
+                    valA = result;
+                    valB = null;
+                    console.log(valA, valB, operand, result)
+                }
+                else {
+                    valA = null;
+                    valB = null;
+                    console.log(valA, valB, operand, result)
+                }
+            }
         }
     })
 })
 
+
 function add(a, b) {
-    return a + b
+    return parseFloat(a) + parseFloat(b);
 };
 
 function subtract(a, b) {
-    return a - b
+    return parseFloat(a) - parseFloat(b);
 };
 
 function multiply(a, b) {
-    return a * b
+    return parseFloat(a) * parseFloat(b);
 };
 
 function divide(a, b) {
-    return a / b
+    return parseFloat(a) / parseFloat(b);
 };
+
 
 function operate(a, b, operator) {
     if (operator == "+") {
+        console.log(add(a,b));
         return add(a, b);
     }
     if (operator == "-") {
@@ -91,8 +120,13 @@ function operate(a, b, operator) {
         return multiply(a, b)
     }
     if (operator == "/") {
-        return divide(a, b);
-    }
-
-    
-};
+        if (b == 0) {
+            valA = null;
+            valB = null;
+            operand = null;
+            return displayValue.innerHTML = "NOT ON MY WATCH";
+        }
+        else {
+            return divide(a, b);
+        }
+}};
